@@ -17,7 +17,7 @@ class Product extends Model
         return $this->belongsTo('Category');
     }
 
-/*    public function getAllProducts()
+    public function getAllProducts()
     {
     	$res = DB::table('products')
     					->join('categories', 'categories.id', '=', 'products.category_id')
@@ -33,5 +33,5 @@ class Product extends Model
     					->select('products.*', 'categories.name as category_name')
     					->get();
     	return $res;
-    }*/
+    }
 }

@@ -31,6 +31,10 @@ Route::get('/logout','UserController@logout');
 })->where(["id"=> "[1-5]+", "name" => "[a-c]+"]);*/
 
 Route::middleware('verifyloggedinuser')->group(function(){
+	
+	Route::get('/pay', 'UserController@pay');
+	Route::post('/pay','UserController@payment');
+	
 	Route::get('/products','UserController@index');
 	Route::get('/product','UserController@create');
 	Route::post('/product','UserController@store');

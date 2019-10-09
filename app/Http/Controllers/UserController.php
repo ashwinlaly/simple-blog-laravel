@@ -35,7 +35,7 @@ class UserController extends Controller
     public function create()
     {
         //
-        $category = $this->category::all();
+        $category = $this->category::where('status',1)->get();
         return view('products.product_create',["categories" => $category]);
     }
 
@@ -182,6 +182,26 @@ class UserController extends Controller
         $products = $this->product::find($id);
         $categories = $this->category::all();
         return view('products.product_edit',["products" => $products, "categories" => $categories]);
+    }
+
+    public function pay(){
+        $stripe_public_key = array("stripe_public_key" => env("STRIPE_PUBLISHABLE_KEY"));
+        return view('pay.stripe', $stripe_public_key);
+    }
+
+    public function payment(Request $request){
+        \Stripe\Stripe::setApiKey(env("STRIPE_SECRET_KEY"));
+        try {
+            \Stripe\Charge::create(array(
+                "amount" =>  $request->input('amount') * 1,
+                "currency" => "inr",
+                "source" => $request->input('stripeToken'),
+                "description" => "test"
+            ));
+            return redirect('/products');
+        } catch( \Exception $e){
+            dd($e);
+        }
     }
 
 }
