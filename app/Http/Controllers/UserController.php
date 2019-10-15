@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\User;
-use App\Product;
+use App\Models\Category;
+use App\Models\User;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -23,8 +23,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $products = $this->product::first();
-        // dd($products->category);
+        $products = $this->product::all();
         return view('products.product_list',["products" => $products]);
     }
 

@@ -15,7 +15,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		@foreach($products as $value)
+		@foreach($products as $key => $value)
 			<tr>
 				<td>{{ $key+1 }}</td>
 				<td>{{ $value->name }}</td>
