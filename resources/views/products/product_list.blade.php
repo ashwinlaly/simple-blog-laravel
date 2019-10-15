@@ -15,13 +15,13 @@
 		</tr>
 	</thead>
 	<tbody>
-		@foreach($products as $key => $value)
+		@foreach($products as $value)
 			<tr>
 				<td>{{ $key+1 }}</td>
 				<td>{{ $value->name }}</td>
 				<td>{{ $value->quantity }}</td>
 				<td>{{ $value->price }}</td>
-				<td>{{ $value->category_name }}</td>
+				<td>{{ $value->category->name }}</td>
 				<td>
 					<a class="btn btn-info" href="{{ url('/product')}}/{{$value->id}}" >Edit</a>
 					<button class="btn btn-danger delete" data-id="{{ $value->id }}">Delete</button>

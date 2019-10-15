@@ -8,13 +8,14 @@ use DB;
 class Product extends Model
 {
 
-    protected $fillable = [
+    /*protected $fillable = [
         "name","price","quantity","category_id","image","status","image_ext","original_name"
-    ];
+    ];*/
 
+    protected $guarded = [];
 
     public function category() {
-        return $this->belongsTo('Category');
+        return $this->belongsTo(Category::class);
     }
 
     public function getAllProducts()

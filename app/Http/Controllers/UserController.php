@@ -23,7 +23,8 @@ class UserController extends Controller
 
     public function index()
     {
-        $products = $this->product->getAllProducts();
+        $products = $this->product::first();
+        // dd($products->category);
         return view('products.product_list',["products" => $products]);
     }
 
@@ -35,7 +36,7 @@ class UserController extends Controller
     public function create()
     {
         //
-        $category = $this->category::where('status',1)->get();
+        $category = $this->category::active()->get();
         return view('products.product_create',["categories" => $category]);
     }
 
