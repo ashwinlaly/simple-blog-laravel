@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
 use App\Models\Category;
 use App\Models\User;
 use App\Models\Product;
-use Illuminate\Http\Request;
+
+use App\Mail\TestEmail;
 
 class UserController extends Controller
 {
@@ -23,6 +27,7 @@ class UserController extends Controller
 
     public function index()
     {
+        Mail::to('ashwinlaly@gmail.com')->send(new TestEmail());
         $products = $this->product::all();
         return view('products.product_list',["products" => $products]);
     }
