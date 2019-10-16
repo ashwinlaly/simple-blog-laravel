@@ -38,7 +38,7 @@ Route::middleware('verifyloggedinuser')->group(function(){
 	Route::get('/products','UserController@index');
 	Route::get('/product','UserController@create');
 	Route::post('/product','UserController@store');
-	Route::get('/product/{id}','UserController@edit')->where('id', '[1-9]+');
-	Route::post('/product/{id}','UserController@update')->where('id', '[1-9]+');
-	Route::delete('/product/{id}','UserController@destroy')->where('id', '[1-9]+');
+	Route::get('/product/{product}','UserController@edit')->where('product', '[1-9]+');
+	Route::post('/product/{product}','UserController@update')->where('product', '[1-9]+');
+	Route::delete('/product/{product}','UserController@destroy')->where('product', '[1-9]+');
 });

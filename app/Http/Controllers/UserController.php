@@ -117,9 +117,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        $this->product::find($id)->delete();
+        $product->delete();
     }
 
     public function login(Request $req)
@@ -182,11 +182,10 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        $products = $this->product::find($id);
         $categories = $this->category::all();
-        return view('products.product_edit',["products" => $products, "categories" => $categories]);
+        return view('products.product_edit', compact("product", "categories"));
     }
 
     public function pay(){
