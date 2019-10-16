@@ -14,6 +14,15 @@ class Product extends Model
 
     protected $guarded = [];
 
+    public function getStatusAttribute($attribute)
+    {
+        return [
+            0 => 'InActive',
+            1 => 'Active',
+            2 => 'Progress'
+        ][$attribute];
+    }
+
     public function category() {
         return $this->belongsTo(Category::class);
     }
