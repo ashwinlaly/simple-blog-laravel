@@ -108,13 +108,7 @@ class UserController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $data = $request->validate([
-            "name" => "required|min:5",
-            "price" => "required",
-            "quantity" => "required"
-        ]);
-
-        $product->update($data);
+        $product->update($this->validateRequestUser());
         return redirect('products');
     }
 
@@ -193,6 +187,15 @@ class UserController extends Controller
     {
         $categories = $this->category::all();
         return view('products.product_edit', compact("product", "categories"));
+    }
+
+    private function validateRequestUser()
+    {
+        return request()->validate([
+            "name" => "required|min:5",
+            "price" => "required",
+            "quantity" => "required"
+        ]);
     }
 
     public function pay(){
