@@ -34,6 +34,18 @@
 		                @enderror
 		            </div>
 		            <div class="form-group">
+		                <label class="form-label">Status</label>
+		                <select name="status" class="form-control">
+		                	<option value="">Select the Status</option>
+		                	@foreach($product::activeOptions() as $key => $value)
+		                		<option value="{{ $key }}" <?php echo ($product->status == $value)? "selected" : ""?> >{{ $value }}</option>
+		                	@endforeach
+		                </select>
+		                @error('status')
+		                    <div class="alert alert-danger">{{ $message }}</div>
+		                @enderror
+		            </div>
+		            <div class="form-group">
 		                <label class="form-label">Category</label>
 		                <select name="category" value="" class="form-control">
 		                	<option value="">Select a Category</option>

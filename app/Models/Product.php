@@ -14,34 +14,25 @@ class Product extends Model
 
     protected $guarded = [];
 
+    protected $attributes = [
+        "stauts" => 1
+    ];
+
     public function getStatusAttribute($attribute)
     {
-        return [
-            0 => 'InActive',
-            1 => 'Active',
-            2 => 'Progress'
-        ][$attribute];
+        return $this->activeOptions()[$attribute];
     }
 
     public function category() {
         return $this->belongsTo(Category::class);
     }
 
-    public function getAllProducts()
-    {
-    	$res = DB::table('products')
-    					->join('categories', 'categories.id', '=', 'products.category_id')
-    					->select('products.*', 'categories.name as category_name')
-    					->get();
-    	return $res;
+    public static function activeOptions(){
+        return [
+            0 => 'InActive',
+            1 => 'Active',
+            2 => 'Progress'
+        ];
     }
-    public function getProductById($id)
-    {
-    	$res = DB::table('products')
-    					->join('categories', 'categories.id', '=', 'products.category_id')
-    					->where(array('products.id' => $id))
-    					->select('products.*', 'categories.name as category_name')
-    					->get();
-    	return $res;
-    }
+
 }

@@ -108,6 +108,7 @@ class UserController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        // dd($request->all());
         $product->update($this->validateRequestUser());
         return redirect('products');
     }
@@ -194,7 +195,8 @@ class UserController extends Controller
         return request()->validate([
             "name" => "required|min:5",
             "price" => "required",
-            "quantity" => "required"
+            "quantity" => "required",
+            "status" => "required"
         ]);
     }
 
