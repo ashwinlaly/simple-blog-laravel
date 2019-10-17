@@ -106,9 +106,16 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Product $product)
     {
-        //
+        $data = $request->validate([
+            "name" => "required|min:5",
+            "price" => "required",
+            "quantity" => "required"
+        ]);
+
+        $product->update($data);
+        return redirect('products');
     }
 
     /**

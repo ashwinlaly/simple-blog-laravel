@@ -39,7 +39,7 @@ Route::middleware('verifyloggedinuser')->group(function(){
 	Route::get('/product','UserController@create');
 	Route::post('/product','UserController@store');
 	Route::get('/product/{product}','UserController@edit')->where('product', '[1-9]+');
-	Route::post('/product/{product}','UserController@update')->where('product', '[1-9]+');
+	Route::patch('/product/{product}','UserController@update')->where('product', '[1-9]+');
 	Route::delete('/product/{product}','UserController@destroy')->where('product', '[1-9]+');
 
 	Route::get('/posts','PostController@index');

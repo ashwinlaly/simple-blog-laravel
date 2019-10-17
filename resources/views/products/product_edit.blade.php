@@ -5,7 +5,8 @@
 <div class="row">
 	<div class="col-lg-4"></div>
 	<div class="col-lg-4">
-		<form action="{{ url('/product') }}" method="post" name="product" id="product">
+		<form action="{{ url('/product') }}/{{ $product->id }}" method="post" name="product" id="product">
+			@method('patch')
 		    <div class="card">
 		        <div class="card-header">
 		            Edit product
@@ -13,21 +14,21 @@
 		        <div class="card-body">
 		            <div class="form-group">
 		                <label class="form-label">Name</label>
-		                <input type="text" name="name" placeholder="Enter the Product Name" value="{{ $product->name }}" class="form-control" />
+		                <input type="text" name="name" placeholder="Enter the Product Name" value="{{ old('name') ?? $product->name }}" class="form-control" />
 		                @error('name')
 		                    <div class="alert alert-danger">{{ $message }}</div>
 		                @enderror
 		            </div>
 		            <div class="form-group">
 		                <label class="form-label">Price</label>
-		                <input type="number" name="price" placeholder="Enter the product price" value="{{ $product->price }}" class="form-control" />
+		                <input type="number" name="price" placeholder="Enter the product price" value="{{ old('price') ?? $product->price }}" class="form-control" />
 		                @error('price')
 		                    <div class="alert alert-danger">{{ $message }}</div>
 		                @enderror
 		            </div>
 		            <div class="form-group">
 		                <label class="form-label">Quantity</label>
-		                <input type="number" name="quantity" placeholder="Enter the Quantity" value="{{ $product->quantity }}" class="form-control" />
+		                <input type="number" name="quantity" placeholder="Enter the Quantity" value="{{ old('quantity') ?? $product->quantity }}" class="form-control" />
 		                @error('quantity')
 		                    <div class="alert alert-danger">{{ $message }}</div>
 		                @enderror

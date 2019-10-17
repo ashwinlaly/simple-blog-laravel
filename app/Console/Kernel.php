@@ -28,7 +28,9 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->job(new TestEmail())->everyMinute();
+
+        
+        // $schedule->job(new TestEmail())->everyMinute();
     }
 
     /**
