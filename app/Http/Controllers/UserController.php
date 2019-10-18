@@ -29,7 +29,7 @@ class UserController extends Controller
     {
         Mail::to('ashwinlaly@gmail.com')->send(new TestEmail());
         $products = $this->product::all();
-        return view('products.product_list',["products" => $products]);
+        return view('products.product_list', compact("products"));
     }
 
     /**
@@ -80,7 +80,7 @@ class UserController extends Controller
             $this->product->image = $image_name;
             $this->product->save();
             session()->flash('notify-success', 'Product created Sucessfully.');
-            return redirect('/products');
+            return redirect('/product');
         } else {
             session()->flash('notify-error', 'Invalid file selected');
             return redirect('/product');
@@ -94,9 +94,22 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Product $product)
     {
-        //
+        $categories = $this->category::all();
+        return view('products.product_edit', compact("product", "categories"));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Product $product)
+    {
+        $categories = $this->category::all();
+        return view('products.product_edit', compact("product", "categories"));
     }
 
     /**
@@ -110,7 +123,7 @@ class UserController extends Controller
     {
         // dd($request->all());
         $product->update($this->validateRequestUser());
-        return redirect('products');
+        return redirect('product');
     }
 
     /**
@@ -139,11 +152,11 @@ class UserController extends Controller
             session()->put('loggedin',1);
             session()->put('loggerId',$email);
             session()->flash('notify-success','Logged in sucessfully');
-            return redirect('/products');
+            return redirect('/product');
         } else {
             session()->flash('notify-error','Account does not exists');
         }
-        return redirect('/');
+        return back()->withInput();
     }
 
     public function logout()
@@ -178,18 +191,6 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product)
-    {
-        $categories = $this->category::all();
-        return view('products.product_edit', compact("product", "categories"));
-    }
-
     private function validateRequestUser()
     {
         return request()->validate([
@@ -214,7 +215,7 @@ class UserController extends Controller
                 "source" => $request->input('stripeToken'),
                 "description" => "test"
             ));
-            return redirect('/products');
+            return redirect('/product');
         } catch( \Exception $e){
             dd($e);
         }

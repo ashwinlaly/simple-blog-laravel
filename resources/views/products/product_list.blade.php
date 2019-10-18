@@ -1,6 +1,6 @@
 @include('template.header')
 <div class="jumbotron">
-	Create Product
+	<a href="{{ route('product.create') }}" class="btn btn-primary">Create Product</a>
 </div>
 @include('template.flash')
 <table class="table table-bordered">
@@ -25,7 +25,7 @@
 				<td>{{ $value->category->name }}</td>
 				<td>{{ $value->status }}</td>
 				<td>
-					<a class="btn btn-info" href="{{ url('/product')}}/{{$value->id}}" >Edit</a>
+					<a class="btn btn-info" href="{{ route('product.edit', [$value->id]) }}" >Edit</a>
 					<button class="btn btn-danger delete" data-id="{{ $value->id }}">Delete</button>
 				</td>
 			</tr>

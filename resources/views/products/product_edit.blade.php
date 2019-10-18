@@ -5,7 +5,7 @@
 <div class="row">
 	<div class="col-lg-4"></div>
 	<div class="col-lg-4">
-		<form action="{{ url('/product') }}/{{ $product->id }}" method="post" name="product" id="product">
+		<form action="{{ route('product.update',$product->id) }}" method="post" name="product" id="product">
 			@method('patch')
 		    <div class="card">
 		        <div class="card-header">

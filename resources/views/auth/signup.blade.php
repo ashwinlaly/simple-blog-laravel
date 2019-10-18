@@ -9,11 +9,9 @@
     <div class="row">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
-            <form action="{{ url('/signup') }}" method="post" name="signup" id="signup">
+            <form action="{{ route('signup.signup') }}" method="post" name="signup" id="signup">
                 <div class="card">
-                    <div class="card-header">
-                        Signup
-                    </div>
+                    <div class="card-header">Signup</div>
                     <div class="card-body">
                         <div class="form-group">
                             <label class="form-label">Name</label>
