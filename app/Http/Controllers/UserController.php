@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\User;
 use App\Models\Product;
 
+// use App\Events\UserSignUpEvent;
 use App\Mail\TestEmail;
 
 class UserController extends Controller
@@ -27,7 +28,6 @@ class UserController extends Controller
 
     public function index()
     {
-        Mail::to('ashwinlaly@gmail.com')->send(new TestEmail());
         $products = $this->product::all();
         return view('products.product_list', compact("products"));
     }
@@ -148,6 +148,7 @@ class UserController extends Controller
         $password = md5($req->input("password"));
         $where = array("email" => $email, "password" => $password);
         $count = $this->user::where($where)->count();
+
         if ($count == 1) {
             session()->put('loggedin',1);
             session()->put('loggerId',$email);
@@ -167,25 +168,18 @@ class UserController extends Controller
 
     public function signup(Request $req)
     {
-        $req->validate([
-            "name" => "required|min:3|max:20",
-            "email" => "required|min:8",
-            "password" => "required|min:8|max:15"
-        ]);
 
-        $name = $req->input("name");
         $email = $req->input("email");
         $password = $req->input("password");
         $where = array("email" => $email);
         $count = $this->user::where($where)->count();
         if ($count == 1) {
             session()->flash('notify-error','Email already taken');
-            return redirect('/signin');
+            return redirect('/signup')->withInput();
         } else {
-            $this->user->name = $name;
-            $this->user->email = $email;
-            $this->user->password = md5($password);
-            $this->user->save();
+            $user = User::create($this->validateUserSignUp());
+            Mail::to("ashwinlaly@gmail.com")->send(new TestEmail());
+            // event(new UserSignUpEvent($user));
             session()->flash('notify-success','Account Created Sucessfully');
         }
         return redirect('/');
@@ -198,6 +192,14 @@ class UserController extends Controller
             "price" => "required",
             "quantity" => "required",
             "status" => "required"
+        ]);
+    }
+
+    private function validateUserSignUp(){
+        return request()->validate([
+            "name" => "required|min:3|max:20",
+            "email" => "required|min:8",
+            "password" => "required|min:8|max:15"
         ]);
     }
 

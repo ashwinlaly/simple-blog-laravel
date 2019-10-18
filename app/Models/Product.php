@@ -15,7 +15,7 @@ class Product extends Model
     protected $guarded = [];
 
     protected $attributes = [
-        "stauts" => 1
+        "status" => 1
     ];
 
     public function getStatusAttribute($attribute)
