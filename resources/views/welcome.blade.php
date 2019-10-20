@@ -33,6 +33,7 @@
                         <input type="reset" class="btn btn-warning" name="reset" value="Reset" />
                         <input type="submit" class="btn btn-primary" name="Submit" value="Submit" />
                     </div>
+                    <a href="{{ route('signup') }}">Create an account</a>
                 </div>
             </form>
             @include('template.flash')

@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
 use App\Models\Category;
 use App\Models\User;
 use App\Models\Product;
 
-// use App\Events\UserSignUpEvent;
-use App\Mail\TestEmail;
+use App\Events\UserSignUpEvent;
 
 class UserController extends Controller
 {
@@ -178,8 +176,7 @@ class UserController extends Controller
             return redirect('/signup')->withInput();
         } else {
             $user = User::create($this->validateUserSignUp());
-            Mail::to("ashwinlaly@gmail.com")->send(new TestEmail());
-            // event(new UserSignUpEvent($user));
+            event(new UserSignUpEvent($user));
             session()->flash('notify-success','Account Created Sucessfully');
         }
         return redirect('/');

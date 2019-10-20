@@ -8,18 +8,8 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Mail\UserSignUpEmail;
 
-class UserSignUpListeners
+class UserSignUpListeners implements ShouldQueue
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
     /**
      * Handle the event.
      *
@@ -28,8 +18,8 @@ class UserSignUpListeners
      */
     public function handle($event)
     {
-        // Mail::to('ashwinlaly@gmail.com')->send(new UserSignUpEmail());
-        // dd($event->user->email);
-        Mail::to($event->user->email)->send(new UserSignUpEmail());
+        Mail::to('ashwinlaly@gmail.com')->send(new UserSignUpEmail());
+        // dd($event);
+        // Mail::to($event->user->email)->send(new UserSignUpEmail());
     }
 }

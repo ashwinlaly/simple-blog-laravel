@@ -7,8 +7,6 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
-use App\Events\UserSignUpEvent;
-use App\Listeners\UserSignUpListeners;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -21,8 +19,8 @@ class EventServiceProvider extends ServiceProvider
         /*Registered::class => [
             SendEmailVerificationNotification::class,
         ],*/
-        UserSignUpEvent::class => [
-            UserSignUpListeners::class
+        \App\Events\UserSignUpEvent::class => [
+            \App\Listeners\UserSignUpListeners::class
         ],
     ];
 
