@@ -18,7 +18,7 @@ class UserSignUpListeners implements ShouldQueue
      */
     public function handle($event)
     {
-        Mail::to('ashwinlaly@gmail.com')->send(new UserSignUpEmail());
+        Mail::to($event->user->email)->send(new UserSignUpEmail());
         // dd($event);
         // Mail::to($event->user->email)->send(new UserSignUpEmail());
     }
