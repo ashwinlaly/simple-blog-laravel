@@ -83,4 +83,13 @@ class PostController extends Controller
     {
         //
     }
+
+    function call() : int {
+        return 10;
+    }
+
+    public function test()
+    {
+        echo $this->call();
+    }
 }

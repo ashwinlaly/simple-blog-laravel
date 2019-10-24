@@ -46,3 +46,5 @@ Route::middleware('verifyloggedinuser')->group(function(){
 
 	Route::get('/posts','PostController@index');
 });
+
+Route::get('/test', 'PostController@test');
