@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Exports\ProductExport;
+use App\Exports\PostExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PostController extends Controller
 {
@@ -82,6 +85,16 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function export()
+    {
+        return Excel::download(new ProductExport, 'products.xlsx');
+    }
+
+    public function exportfromview()
+    {
+        return Excel::download(new PostExport, 'posts.xlsx');
     }
 
     function call() : int {

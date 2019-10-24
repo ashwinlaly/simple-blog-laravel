@@ -48,3 +48,5 @@ Route::middleware('verifyloggedinuser')->group(function(){
 });
 
 Route::get('/test', 'PostController@test');
+Route::get('/export', 'PostController@export');
+Route::get('/exportfromview', 'PostController@exportfromview');
