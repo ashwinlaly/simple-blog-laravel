@@ -1,0 +1,23 @@
+MailGun
+
+MAIL_DRIVER=mailgun
+MAIL_HOST=smtp.mailgun.org
+MAIL_PORT=587
+MAIL_USERNAME=postmaster@sandboxa855ab96bc7a4b8db4afa04a0bcb958c.mailgun.org
+MAIL_PASSWORD=03ab99f699dcae7c3397184fcdf5e660-9c988ee3-e1350321
+MAIL_ENCRYPTION=null
+
+//MailTrap
+
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=51c7e7c0f5a563
+MAIL_PASSWORD=76f9306a04f0a1
+MAIL_ENCRYPTION=null
+
+
+// Stripe
+
+STRIPE_PUBLISHABLE_KEY = pk_test_U2HlRjNkL5HuppNObiDEJo1100jCqhrrbJ
+STRIPE_SECRET_KEY = sk_test_kfISaBkWuOJKQbNKCfc7qliA00ouquwiI1
